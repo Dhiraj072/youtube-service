@@ -1,0 +1,98 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.5.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.github.dhiraj072.youtubeservice'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+// Configures the classpath and the source and resource directories
+// of the integrationTest task.
+sourceSets {
+	//Declaring this source set creates compile time and runtime configurations for it.
+	integrationTest {
+		java {
+			compileClasspath += main.output + test.output
+			runtimeClasspath += main.output + test.output
+			srcDir file('src/integration-test/java')
+		}
+		resources.srcDir file('src/integration-test/resources')
+	}
+}
+
+// Configure source directory and uses the correct classpath.
+task integrationTest(type: Test) {
+	testClassesDirs = sourceSets.integrationTest.output.classesDirs
+	classpath = sourceSets.integrationTest.runtimeClasspath
+	// Ensure that integration tests are run every time
+	outputs.upToDateWhen { false }
+}
+
+//Ensure that the check task fails the build if there are failing integration tests.
+check.dependsOn integrationTest
+//Ensure that our unit tests are run before our integration tests
+integrationTest.mustRunAfter test
+
+//Configures the compile and runtime configurations for our integration tests
+//and includes the dependencies of the test task.
+configurations {
+	integrationTestCompile.extendsFrom testCompile
+	integrationTestRuntime.extendsFrom testRuntime
+}
+
+repositories {
+	mavenCentral()
+}
+
+// Ensure that the HTML reports of unit and integration tests are written to different directories.
+tasks.withType(Test) {
+	reports.html.setDestination(file("${reporting.baseDir}/${name}"))
+	environment SPRING_PROFILES_ACTIVE: environment.SPRING_PROFILES_ACTIVE ?: "dev"
+	// Enable JUnit 5
+	useJUnitPlatform()
+	testLogging {
+		events 'PASSED', 'FAILED', 'SKIPPED'
+	}
+	afterSuite { desc, result ->
+		if (!desc.parent) {
+			println "\nTest result: ${result.resultType}"
+			println "Test summary: ${result.testCount} tests, " +
+					"${result.successfulTestCount} succeeded, " +
+					"${result.failedTestCount} failed, " +
+					"${result.skippedTestCount} skipped"
+		}
+	}
+}
+
+bootRun {
+	environment SPRING_PROFILES_ACTIVE: environment.SPRING_PROFILES_ACTIVE ?: "dev"
+}
+
+dependencies {
+	compile 'org.springframework.boot:spring-boot-starter-web'
+	compile 'com.fasterxml.jackson.core:jackson-databind'
+	compile 'com.google.apis:google-api-services-youtube:v3-rev205-1.25.0'
+	compile 'com.google.api-client:google-api-client:1.25.0'
+	compile 'com.google.oauth-client:google-oauth-client-jetty:1.25.0'
+	runtime 'com.h2database:h2'
+	testCompile 'io.rest-assured:rest-assured:3.0.0'
+	testCompile 'io.rest-assured:json-schema-validator:3.0.0'
+	testCompile('org.springframework.boot:spring-boot-starter-test') {
+		exclude group:'junit'
+	}
+	testCompile 'org.junit.jupiter:junit-jupiter-api'
+	testRuntime 'org.junit.jupiter:junit-jupiter-engine'
+}
