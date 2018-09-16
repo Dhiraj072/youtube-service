@@ -1,4 +1,4 @@
-package com.github.dhiraj072.youtubeservice.youtubeservice;
+package com.github.dhiraj072.youtubeservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
