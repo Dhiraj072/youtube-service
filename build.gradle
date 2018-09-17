@@ -83,7 +83,6 @@ bootRun {
 
 dependencies {
 	compile 'org.springframework.boot:spring-boot-starter-web'
-	compile 'com.fasterxml.jackson.core:jackson-databind'
 	compile 'com.google.apis:google-api-services-youtube:v3-rev205-1.25.0'
 	compile 'com.google.api-client:google-api-client:1.25.0'
 	compile 'com.google.oauth-client:google-oauth-client-jetty:1.25.0'
@@ -93,6 +92,6 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test') {
 		exclude group:'junit'
 	}
-	testCompile 'org.junit.jupiter:junit-jupiter-api'
+	testCompile 'org.junit.jupiter :junit-jupiter-api'
 	testRuntime 'org.junit.jupiter:junit-jupiter-engine'
 }
