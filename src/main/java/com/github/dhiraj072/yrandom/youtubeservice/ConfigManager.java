@@ -1,4 +1,4 @@
-package com.github.dhiraj072.youtubeservice;
+package com.github.dhiraj072.yrandom.youtubeservice;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

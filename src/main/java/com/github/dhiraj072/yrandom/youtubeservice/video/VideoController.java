@@ -1,4 +1,4 @@
-package com.github.dhiraj072.youtubeservice.video;
+package com.github.dhiraj072.yrandom.youtubeservice.video;
 
 import com.google.api.services.youtube.model.Video;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.github.dhiraj072.youtubeservice;
+package com.github.dhiraj072.yrandom.youtubeservice;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,4 +1,4 @@
-package com.github.dhiraj072.youtubeservice.video;
+package com.github.dhiraj072.yrandom.youtubeservice.video;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 

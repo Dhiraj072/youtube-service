@@ -1,6 +1,6 @@
-package com.github.dhiraj072.youtubeservice.video;
+package com.github.dhiraj072.yrandom.youtubeservice.video;
 
-import com.github.dhiraj072.youtubeservice.YoutubeAuthHelper;
+import com.github.dhiraj072.yrandom.youtubeservice.YoutubeAuthHelper;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.SearchListResponse;
