@@ -12,6 +12,7 @@ import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.youtube.YouTube;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -86,8 +87,7 @@ public class YoutubeAuthHelper {
   private Credential authorize(String clientSecret) throws IOException {
 
     // Load client secrets.
-    InputStream in = YoutubeManager.class
-        .getResourceAsStream("/" + clientSecret);
+    InputStream in = new ByteArrayInputStream(clientSecret.getBytes());
     GoogleClientSecrets clientSecrets = GoogleClientSecrets
         .load(JSON_FACTORY, new InputStreamReader(in));
 
