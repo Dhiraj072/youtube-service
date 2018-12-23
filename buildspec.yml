@@ -3,8 +3,8 @@ version: 0.2
 phases:
   build:
     commands:
-      - gradlew clean
-      - gradlew build
+      - gradle clean
+      - gradle build
 artifacts:
   files:
     - 'Dockerfile'
