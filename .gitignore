@@ -27,3 +27,6 @@ src/main/resources/client_secret*.json
 /dist/
 /nbdist/
 /.nb-gradle/
+
+## LOGS ##
+*.log
