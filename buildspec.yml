@@ -3,8 +3,8 @@ version: 0.2
 phases:
   build:
     commands:
-      - ./gradlew clean
-      - ./gradlew assemble
+      - chmod +x ./gradlew clean
+      - chmod +x ./gradlew assemble
 artifacts:
   files:
     - 'Dockerfile'
