@@ -4,8 +4,9 @@ phases:
   build:
     commands:
       - ./gradlew clean
-      - ./gradlew build
+      - ./gradlew assemble
 artifacts:
   files:
     - 'Dockerfile'
+    - 'YRANDOM.log'
     - 'build/libs/youtube-service-0.0.1-SNAPSHOT.jar'
