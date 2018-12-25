@@ -6,15 +6,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class ConfigManager {
 
-  @Value("${client.secret}")
-  private String clientSecret;
+  @Value("${youtube.apikey}")
+  private String youtubeApiKey;
 
   @Value("${spring.application.name}")
   private String appName;
 
-  public String getClientSecret() {
+  public String getYoutubeApiKey() {
 
-    return clientSecret;
+    if (youtubeApiKey.isEmpty()) {
+
+      youtubeApiKey = System.getenv("YOUTUBE_API_KEY");
+    }
+    return youtubeApiKey;
   }
 
   public String getAppName() {
