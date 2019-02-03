@@ -1,0 +1,52 @@
+[
+    {
+      "Namespace": "aws:autoscaling:asg",
+      "OptionName": "MaxSize",
+      "Value": "1"
+    },
+    {
+      "Namespace": "aws:ec2:vpc",
+      "OptionName": "VPCId",
+      "Value": "vpc-dadd2dbf"
+    },
+    {
+      "Namespace": "aws:ec2:vpc",
+      "OptionName": "Subnets",
+      "Value": "subnet-52cd2425,subnet-4d34fe28"
+    },
+    {
+      "Namespace": "aws:elasticbeanstalk:environment",
+      "OptionName": "LoadBalancerType",
+      "Value": "application"
+    },
+    {
+      "Namespace": "aws:elbv2:listener:443",
+      "OptionName": "Protocol",
+      "Value": "HTTPS"
+    },
+    {
+      "Namespace": "aws:elbv2:listener:443",
+      "OptionName": "SSLCertificateArns",
+      "Value": "arn:aws:acm:ap-southeast-1:733012925755:certificate/4747f9ab-5f0b-4e10-b116-af994a69e064"
+    },
+    {
+      "Namespace": "aws:autoscaling:launchconfiguration",
+      "OptionName": "EC2KeyName",
+      "Value": "youtube-service"
+    },
+    {
+      "Namespace": "aws:autoscaling:launchconfiguration",
+      "OptionName": "SecurityGroups",
+      "Value": "sg-0a9a70e326285efaa"
+    },
+    {
+      "Namespace": "aws:elasticbeanstalk:application:environment",
+      "OptionName": "SPRING_PROFILES_ACTIVE",
+      "Value": "prod"
+    },
+    {
+      "Namespace": "aws:elasticbeanstalk:application:environment",
+      "OptionName": "YOUTUBE_API_KEY",
+      "Value": "PLACEHOLDER"
+    }
+]
