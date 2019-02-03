@@ -3,5 +3,5 @@ jobs:
   include:
     - stage: Build
       script: ./gradlew build
-#    - stage: Deploy
-#      script: ./gradlew deployStaging
+    - stage: Deploy
+      script: ./gradlew awsEbMigrateEnvironment
