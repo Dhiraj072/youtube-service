@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ConfigManager {
 
-  @Value("${youtube.apikey}")
+  @Value("${youtube.apikey:}")
   private String youtubeApiKey;
 
   @Value("${spring.application.name}")
@@ -16,7 +16,13 @@ public class ConfigManager {
 
     if (youtubeApiKey.isEmpty()) {
 
-      youtubeApiKey = System.getenv("YOUTUBE_API_KEY");
+      if (System.getenv().containsKey("YOUTUBE_API_KEY")) {
+
+        youtubeApiKey = System.getenv("YOUTUBE_API_KEY");
+      } else {
+
+        throw new IllegalArgumentException("Youtube API key is invalid");
+      }
     }
     return youtubeApiKey;
   }

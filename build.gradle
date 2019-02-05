@@ -101,6 +101,7 @@ dependencies {
 	compile 'com.google.api-client:google-api-client:1.25.0'
 	compile 'com.fasterxml.jackson.core:jackson-databind'
 	compile 'com.google.oauth-client:google-oauth-client-jetty:1.25.0'
+	compile 'org.asynchttpclient:async-http-client:2.2.0'
 	runtime 'com.h2database:h2'
 	testCompile 'io.rest-assured:rest-assured:3.0.0'
 	testCompile 'io.rest-assured:json-schema-validator:3.0.0'

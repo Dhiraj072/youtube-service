@@ -1,6 +1,8 @@
 package com.github.dhiraj072.yrandom.youtubeservice.video;
 
 import com.github.dhiraj072.yrandom.youtubeservice.ConfigManager;
+import com.github.dhiraj072.yrandom.youtubeservice.utils.DataMuseRandomWordGenerator;
+import com.github.dhiraj072.yrandom.youtubeservice.utils.RandomWordGenerator;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.HttpTransport;
@@ -23,23 +25,17 @@ public class YoutubeManager {
   private static final Logger LOGGER = LoggerFactory
       .getLogger(YoutubeManager.class);
 
-  // Youtube API client service
   private static YouTube youtube;
-
-  private ConfigManager configManager;
+  private String youtubeApiKey;
+  private RandomWordGenerator randomWordGenerator;
 
   @Autowired
   YoutubeManager(ConfigManager configManager) {
 
     try {
 
-      LOGGER.info("Initializing youtube manager");
-      this.configManager = configManager;
-      if (configManager.getYoutubeApiKey().isEmpty()) {
-
-        LOGGER.error("Youtube API Key is empty");
-        throw new IllegalArgumentException("Youtube API Key is empty");
-      }
+      this.youtubeApiKey = configManager.getYoutubeApiKey();
+      this.randomWordGenerator = new DataMuseRandomWordGenerator();
       final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
       HttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
       youtube = new YouTube.Builder(HTTP_TRANSPORT, JSON_FACTORY, null)
@@ -48,6 +44,7 @@ public class YoutubeManager {
     } catch (IOException | IllegalArgumentException | GeneralSecurityException e) {
 
       LOGGER.error("Unable to create YoutubeManager bean: {}", e);
+      System.exit(1);
     }
   }
 
@@ -59,9 +56,9 @@ public class YoutubeManager {
       YouTube.Search.List searchListByKeywordRequest = youtube.search()
           .list("snippet");
       searchListByKeywordRequest.setMaxResults((long) 1)
-          .setQ("surfing")
+          .setQ(randomWordGenerator.getRandomWord())
           .setType("video")
-          .setKey(configManager.getYoutubeApiKey());
+          .setKey(youtubeApiKey);
       SearchListResponse response = searchListByKeywordRequest.execute();
       videoId = response.getItems().get(0).getId().getVideoId();
       LOGGER.debug("First video id {}", videoId);
@@ -86,7 +83,7 @@ public class YoutubeManager {
 
       YouTube.Videos.List videosListByIdRequest =
           youtube.videos().list("snippet");
-      videosListByIdRequest.setId(videoId).setKey(configManager.getYoutubeApiKey());
+      videosListByIdRequest.setId(videoId).setKey(youtubeApiKey);
       VideoListResponse response = videosListByIdRequest.execute();
       video = response.getItems().get(0);
       LOGGER.info("VideoListResponse {}", response);
