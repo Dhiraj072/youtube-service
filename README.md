@@ -4,11 +4,11 @@ A microservice to handle youtube stuff for [yrandom](https://github.com/Dhiraj07
 
 ## Built With
 
--  [Gradle](https://gradle.org/) - Build tool
--  [Youtube Data API](https://developers.google.com/youtube/v3/) - Access youtube services
-- [DataMuse API](https://www.datamuse.com/api/) - For generation of random video search queries
-- [JUnit](https://junit.org/) - Testing Framework
-- [RestAssured](http://rest-assured.io/) - REST service testing
+-   [Gradle](https://gradle.org/) - Build tool
+-   [Youtube Data API](https://developers.google.com/youtube/v3/) - Access youtube services
+-   [DataMuse API](https://www.datamuse.com/api/) - For generation of random video search queries
+-   [JUnit](https://junit.org/) - Testing Framework
+-   [RestAssured](http://rest-assured.io/) - REST service testing
 
 ## Authors
 
