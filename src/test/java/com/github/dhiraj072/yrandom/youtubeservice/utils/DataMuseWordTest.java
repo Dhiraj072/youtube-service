@@ -15,7 +15,7 @@ class DataMuseWordTest {
   private ObjectMapper mapper;
 
   @BeforeEach
-  void setup() {
+  void setUp() {
 
     mapper = new ObjectMapper();
   }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ConfigManager {
 
-  @Value("${youtube.apikey:}")
+  @Value("${youtube.apikey}")
   private String youtubeApiKey;
 
   @Value("${spring.application.name}")

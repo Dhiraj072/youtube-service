@@ -1,6 +1,7 @@
 package com.github.dhiraj072.yrandom.youtubeservice.video;
 
 import com.github.dhiraj072.yrandom.youtubeservice.ConfigManager;
+import com.github.dhiraj072.yrandom.youtubeservice.exceptions.ConfigurationException;
 import com.github.dhiraj072.yrandom.youtubeservice.utils.DataMuseRandomWordGenerator;
 import com.github.dhiraj072.yrandom.youtubeservice.utils.RandomWordGenerator;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
@@ -17,6 +18,8 @@ import java.security.GeneralSecurityException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,7 +33,7 @@ public class YoutubeManager {
   private RandomWordGenerator randomWordGenerator;
 
   @Autowired
-  YoutubeManager(ConfigManager configManager) {
+  private YoutubeManager(ConfigManager configManager) throws ConfigurationException {
 
     try {
 
@@ -43,12 +46,12 @@ public class YoutubeManager {
           .build();
     } catch (IOException | IllegalArgumentException | GeneralSecurityException e) {
 
-      LOGGER.error("Unable to create YoutubeManager bean: {}", e);
-      System.exit(1);
+      LOGGER.error("Unable to create YoutubeManager bean", e);
+      throw new ConfigurationException("Unable to create YoutubeManager bean", e);
     }
   }
 
-  Video getRandomYoutubeVideo() {
+  protected Video getRandomYoutubeVideo() {
 
     String videoId = "";
     try {

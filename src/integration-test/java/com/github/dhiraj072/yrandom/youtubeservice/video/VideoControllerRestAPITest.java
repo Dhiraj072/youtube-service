@@ -24,7 +24,7 @@ class VideoControllerRestAPITest {
   private int serverPort;
 
   @BeforeAll
-  void setup() {
+  void setUp() {
 
     RestAssured.port = serverPort;
   }
