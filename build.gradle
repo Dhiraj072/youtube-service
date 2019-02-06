@@ -17,6 +17,7 @@ apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: "jp.classmethod.aws.beanstalk"
+apply plugin: 'jacoco'
 
 group = 'com.github.dhiraj072.youtubeservice'
 version = '0.0.1-SNAPSHOT'
@@ -83,6 +84,18 @@ tasks.withType(Test) {
 		}
 	}
 }
+
+jacocoTestReport {
+	executionData test, integrationTest
+	reports {
+		xml.enabled true
+		xml.destination file('build/reports/jacoco/report.xml')
+		html.enabled true
+		html.destination file('build/reports/jacoco/report.html')
+	}
+}
+
+check.dependsOn jacocoTestReport
 
 bootRun {
 	environment SPRING_PROFILES_ACTIVE: environment.SPRING_PROFILES_ACTIVE ?: "staging"
