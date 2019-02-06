@@ -1,17 +1,14 @@
 language: java
-before_install:
-  - wget https://github.com/codacy/codacy-coverage-reporter/releases/download/4.0.5/codacy-coverage-reporter-4.0.5-assembly.jar
 jobs:
   include:
     - stage: Build
+      before_script: wget https://github.com/codacy/codacy-coverage-reporter/releases/download/4.0.5/codacy-coverage-reporter-4.0.5-assembly.jar
       script: ./gradlew build
+      after_script: java -jar codacy-coverage-reporter-4.0.5-assembly.jar report -l Java -r build/reports/jacoco/report.xml
       if: commit_message != terminateEbEnvironment
 #    - stage: Deploy
 #      script: ./gradlew awsEbMigrateEnvironment
 #      if: commit_message != terminateEbEnvironment
-    - stage: sendCoverage
-      script: java -jar codacy-coverage-reporter-4.0.5-assembly.jar report -l Java -r build/reports/jacoco/report.xml
-      if: commit_message != terminateEbEnvironment
     - stage: destroy
       script: ./gradlew awsEbTerminateEnvironment
       if: commit_message = terminateEbEnvironment
