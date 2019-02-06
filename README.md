@@ -12,7 +12,7 @@ A microservice to handle youtube stuff for [yrandom](https://github.com/Dhiraj07
 
 ## Authors
 
-- [Dhiraj](https://github.com/dhiraj072)
+-   [Dhiraj](https://github.com/dhiraj072)
 
 ## License
 

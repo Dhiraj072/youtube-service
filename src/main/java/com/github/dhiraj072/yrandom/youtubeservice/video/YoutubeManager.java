@@ -18,8 +18,6 @@ import java.security.GeneralSecurityException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -28,7 +26,7 @@ public class YoutubeManager {
   private static final Logger LOGGER = LoggerFactory
       .getLogger(YoutubeManager.class);
 
-  private static YouTube youtube;
+  private YouTube youtube;
   private String youtubeApiKey;
   private RandomWordGenerator randomWordGenerator;
 
