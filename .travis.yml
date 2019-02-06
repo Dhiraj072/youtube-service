@@ -4,9 +4,9 @@ jobs:
     - stage: Build
       script: ./gradlew build
       if: commit_message != terminateEbEnvironment
-    - stage: Deploy
-      script: ./gradlew awsEbMigrateEnvironment
-      if: commit_message != terminateEbEnvironment
+#    - stage: Deploy
+#      script: ./gradlew awsEbMigrateEnvironment
+#      if: commit_message != terminateEbEnvironment
     - stage: destroy
       script: ./gradlew awsEbTerminateEnvironment
       if: commit_message = terminateEbEnvironment
