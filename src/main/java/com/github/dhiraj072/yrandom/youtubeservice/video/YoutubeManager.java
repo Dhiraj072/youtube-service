@@ -31,7 +31,7 @@ public class YoutubeManager {
   private RandomWordGenerator randomWordGenerator;
 
   @Autowired
-  private YoutubeManager(ConfigManager configManager) throws ConfigurationException {
+  YoutubeManager(ConfigManager configManager) throws ConfigurationException {
 
     try {
 

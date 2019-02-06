@@ -1,6 +1,7 @@
 package com.github.dhiraj072.yrandom.youtubeservice.utils;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,6 +19,15 @@ class DataMuseWordTest {
   void setUp() {
 
     mapper = new ObjectMapper();
+  }
+
+  @Test
+  void  testConstructsCorrectly() {
+
+    DataMuseWord word = new DataMuseWord("test");
+    assertEquals(1, word.getScore());
+    assertEquals("test", word.getWord());
+    assertNotNull(word.getTags());
   }
 
   @Test

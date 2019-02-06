@@ -4,7 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class Topics {
+class Topics {
+
+  // No instantiation, only static methods should be called
+  private Topics() { }
 
   private static final List<String> topics = Arrays
       .asList("A Christmas Carol", "A Song of Ice and Fire", "Abkhazia",
