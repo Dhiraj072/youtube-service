@@ -1,26 +1,30 @@
 package com.github.dhiraj072.yrandom.youtubeservice;
 
+import com.github.dhiraj072.yrandom.youtubeservice.exceptions.ConfigurationException;
+import org.junit.Rule;
+import org.junit.contrib.java.lang.system.EnvironmentVariables;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.mock.env.MockEnvironment;
 
-@RunWith(MockitoJUnitRunner.class)
 class ConfigManagerTest {
+
+  @Rule
+  public final EnvironmentVariables environmentVariables = new EnvironmentVariables();
 
   private ConfigManager configManager;
 
+  @BeforeEach
+  void setUp() {
+
+    configManager = new ConfigManager();
+  }
+
   @Test
-  @Disabled
   void throwsWhenApiKeyNotSet() {
 
-    MockEnvironment environment = new MockEnvironment();
-    environment.setProperty("YOUTUBE_API_KEY", "hello");
-    Assertions.assertEquals("hello", System.getenv("YOUTUBE_API_KEY"));
-    configManager = new ConfigManager();
-    Assertions.assertThrows(IllegalArgumentException.class, () ->
-        configManager.getYoutubeApiKey());
+    environmentVariables.set("YOUTUBE_API_KEY", "");
+    Assertions.assertThrows(ConfigurationException.class, () ->
+        configManager.init());
   }
 }

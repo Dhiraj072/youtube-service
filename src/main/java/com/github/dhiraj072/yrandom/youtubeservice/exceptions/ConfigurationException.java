@@ -1,7 +1,7 @@
 package com.github.dhiraj072.yrandom.youtubeservice.exceptions;
 
 /**
- * Something is not right in our configuration
+ * This probably means something is incorrectly set up in our configuration
  */
 public class ConfigurationException extends Exception {
 

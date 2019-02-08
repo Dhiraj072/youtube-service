@@ -119,11 +119,11 @@ dependencies {
 	testCompile 'io.rest-assured:rest-assured:3.0.0'
 	testCompile 'io.rest-assured:json-schema-validator:3.0.0'
 	testCompile('org.springframework.boot:spring-boot-starter-test') {
-		exclude group:'junit'
+		exclude group: "junit"
 	}
-	testCompile 'org.junit.jupiter:junit-jupiter-api'
-	testCompile 'com.github.stefanbirkner:system-rules:1.19.0'
-	testRuntime 'org.junit.jupiter:junit-jupiter-engine'
+	testCompile 'org.junit.jupiter:junit-jupiter-api:5.2.0'
+	testCompile 'com.github.stefanbirkner:system-rules:1.17.2'
+	testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.2.0'
 }
 
 dependencyManagement {

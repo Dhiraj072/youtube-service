@@ -1,5 +1,7 @@
 package com.github.dhiraj072.yrandom.youtubeservice;
 
+import com.github.dhiraj072.yrandom.youtubeservice.exceptions.ConfigurationException;
+import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,26 +16,31 @@ public class ConfigManager {
   private static final String YOUTUBE_API_KEY = "YOUTUBE_API_KEY";
 
   @Value("${youtube.apikey}")
-  private String youtubeApiKey;
+  private String youtubeApiKey = "";
 
   @Value("${spring.application.name}")
   private String appName;
 
+  @PostConstruct
+  void init() throws ConfigurationException {
+
+    setUpYoutubeApiKey();
+  }
+
+  private void setUpYoutubeApiKey() throws ConfigurationException {
+
+    if (this.youtubeApiKey.isEmpty()) {
+
+        this.youtubeApiKey = System.getenv(YOUTUBE_API_KEY);
+      }
+    if (this.youtubeApiKey == null || this.youtubeApiKey.isEmpty()) {
+
+      throw new ConfigurationException("Invalid Youtube API key value = " + this.youtubeApiKey);
+    }
+  }
+
   public String getYoutubeApiKey() {
 
-    LOGGER.info("Youtube API key is {}", youtubeApiKey);
-    if (youtubeApiKey == null || youtubeApiKey.isEmpty()) {
-
-      if (System.getenv().containsKey(YOUTUBE_API_KEY) &&
-          !System.getenv(YOUTUBE_API_KEY).isEmpty()) {
-
-        youtubeApiKey = System.getenv(YOUTUBE_API_KEY);
-        LOGGER.info("Youtube API key from env is {}", youtubeApiKey);
-      } else {
-
-        throw new IllegalArgumentException("Invalid Youtube API key value = " + youtubeApiKey);
-      }
-    }
     return youtubeApiKey;
   }
 
