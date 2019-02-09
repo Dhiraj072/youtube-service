@@ -2,16 +2,11 @@ package com.github.dhiraj072.yrandom.youtubeservice;
 
 import com.github.dhiraj072.yrandom.youtubeservice.exceptions.ConfigurationException;
 import javax.annotation.PostConstruct;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ConfigManager {
-
-  private static final Logger LOGGER = LoggerFactory
-      .getLogger(ConfigManager.class);
 
   private static final String YOUTUBE_API_KEY = "YOUTUBE_API_KEY";
 

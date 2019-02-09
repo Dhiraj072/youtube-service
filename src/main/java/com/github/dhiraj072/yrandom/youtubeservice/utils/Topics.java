@@ -6,9 +6,6 @@ import java.util.Random;
 
 class Topics {
 
-  // No instantiation, only static methods should be called
-  private Topics() { }
-
   private static final List<String> topics = Arrays
       .asList("A Christmas Carol", "A Song of Ice and Fire", "Abkhazia",
           "Abortion", "Abrahamism", "Academic degrees", "Accounting",
@@ -396,7 +393,10 @@ class Topics {
           "Zambia", "Zero", "Zimbabwe", "Zoology", "Zoroastrianism",
           "Zymurgy");
 
-  public static String getRandomTopic() {
+  // No instantiation, only static methods should be called
+  private Topics() { }
+
+  static String getRandomTopic() {
 
     Random random = new Random();
     return topics.get(random.nextInt(topics.size()));

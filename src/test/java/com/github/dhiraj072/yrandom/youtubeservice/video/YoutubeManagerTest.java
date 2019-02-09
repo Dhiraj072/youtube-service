@@ -12,16 +12,15 @@ import org.mockito.Mockito;
 @TestInstance(Lifecycle.PER_CLASS)
 public class YoutubeManagerTest {
 
-  private YoutubeManager youtubeManager;
   private ConfigManager configManager;
 
   @Test
-  public void throwsOnInvalidApiKey() {
+  void throwsOnInvalidApiKey() {
 
     configManager = Mockito.mock(ConfigManager.class);
     Mockito.when(configManager.getYoutubeApiKey()).thenThrow(IllegalArgumentException.class);
     assertThrows(ConfigurationException.class, () -> {
-      youtubeManager = new YoutubeManager(configManager);
+      new YoutubeManager(configManager);
     });
   }
 }

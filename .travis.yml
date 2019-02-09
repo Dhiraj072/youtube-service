@@ -3,7 +3,7 @@ jobs:
   include:
     - stage: Build
       before_script: wget https://github.com/codacy/codacy-coverage-reporter/releases/download/4.0.5/codacy-coverage-reporter-4.0.5-assembly.jar
-      script: ./gradlew build
+      script: ./gradlew build coveralls
       after_script: java -jar codacy-coverage-reporter-4.0.5-assembly.jar report -l Java -r build/reports/jacoco/report.xml
       if: commit_message != terminateEbEnvironment
 #    - stage: Deploy
