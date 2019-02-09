@@ -1,6 +1,7 @@
 package com.github.dhiraj072.yrandom.youtubeservice;
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,7 +14,7 @@ public class YoutubeServiceApplicationTests {
 	@Test
 	void contextLoads() {
 
-		Assertions.assertTrue(true);
+		assertTrue(true);
 	}
 
 }
